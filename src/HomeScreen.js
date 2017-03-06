@@ -2,11 +2,7 @@ import React from 'react';
 import {
   Text, View, Button
 } from 'react-native';
-var socket = require("socket.io-client")("ws://lazybufs-socket-server.herokuapp.com", { jsonp: false });
 
-socket.on('connect', () => {
-  console.log('client connect');
-});
 
 
 
@@ -14,6 +10,10 @@ class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome',
   };
+
+  componentDidMount() {
+
+  }
 
   handleLogout() {
     // TODO: fire redux action on log out
@@ -36,7 +36,8 @@ class HomeScreen extends React.Component {
           title="Map"
         />
         <Button
-          onPress={this.handleLogout}
+          // onPress={this.handleLogout}
+          onPress={()=> navigate( 'Login')}
           title="Login"
         />
       </View>

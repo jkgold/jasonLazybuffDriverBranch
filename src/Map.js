@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import axios from 'axios';
 import { StackNavigator } from 'react-navigation';
 import { API_URL } from '../actions';
+import MapView from 'react-native-maps';
 
 
 class Map extends React.Component {
@@ -13,7 +14,15 @@ class Map extends React.Component {
   render() {
     return (
       <View>
-        <Text>Map</Text>
+        <MapView 
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+
       </View>
     );
   }
