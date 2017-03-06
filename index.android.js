@@ -4,7 +4,7 @@
  * @flow
  */
 
-import Simpleapp from './App.js';
+import Routes from './Routes.js';
 
 // import React, { Component } from 'react';
 import {
@@ -49,4 +49,4 @@ import {
 //   },
 // });
 
-AppRegistry.registerComponent('Simpleapp', () => Simpleapp);
+AppRegistry.registerComponent('Simpleapp', () => Routes);
