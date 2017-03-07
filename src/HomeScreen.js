@@ -27,11 +27,6 @@ class HomeScreen extends React.Component {
         <Text>Hello, Lazy Buffs!</Text>
 
         <Button
-          onPress={()=> navigate( 'Completed')}
-          title="Completed"
-        />
-
-        <Button
           onPress={()=> navigate( 'Map')}
           title="Map"
         />

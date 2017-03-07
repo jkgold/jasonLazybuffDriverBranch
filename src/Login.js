@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-   TextInput, StyleSheet, View, Button, Text, ActivityIndicator, TouchableHighlight
+   TextInput, StyleSheet, View, Button, Text, ActivityIndicator, TouchableHighlight, AsyncStorage
 } from 'react-native';
 import axios from 'axios';
 import { API_URL } from '../actions';
@@ -47,8 +47,18 @@ class Login extends React.Component {
   })
   .then(response => response.json())
   .then((res) => {
-    if (res.err) this.setState({ err: res.err, loading: false })
-    else this.setState({ loading: false })
+    if (res.err) {
+      console.log(res.err);
+      this.setState({ err: res.err, loading: false });
+    }
+    else {
+        AsyncStorage.setItem('auth', JSON.stringify(res.profile))
+        .then((json) => {
+          this.props.navigation.navigate('Active')
+        })
+        .catch((err) => console.log('fail'))
+      this.setState({ loading: false });
+    }
   })
   .catch((err) => {
     console.log(err);
@@ -82,7 +92,7 @@ class Login extends React.Component {
 
         <ActivityIndicator
           animating={this.state.loading}
-          style={{flex: 1, color: '#CFB87C'}}
+          style={{flex: 1 }}
           size='large'
         />
 

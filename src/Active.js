@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Text, View
+  Text, View, AsyncStorage, ListView
 } from 'react-native';
 import axios from 'axios';
 import { StackNavigator } from 'react-navigation';
@@ -11,21 +11,44 @@ import { API_URL } from '../actions';
 
 
 class Active extends React.Component {
-  static navigationOptions ={
+  static navigationOptions = {
     title: ({state}) => "Active",
   };
-  //  componetDidMount()
-  //     axios.get(`${API_URL}/driver/active`, { auth: this.props.auth })
-  //     .then((completedOrders) => {
-  //       console.log();
-  //     })
-    // }
+
+  constructor() {
+    super();
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+   dataSource: ds.cloneWithRows(['row 1', 'row 2']), orders: [],
+    };
+  }
+
+   componentDidMount() {
+     console.log('firing component did mount');
+     AsyncStorage.getItem('auth')
+     .then((result) => {
+      const auth = JSON.parse(result);
+      console.log(auth);
+      return axios.post(`${API_URL}/driver/orders/active`, { auth })
+     })
+     .then((orders) => {
+       this.setState({ orders })
+     })
+     .catch((err) => console.log(err))
+
+    }
 
   render() {
     return (
       <View>
-        <Text>No Active Orders</Text>
+        <ListView
+          dataSource={this.state.orders}
+          renderRow={(rowData) => <Text>{rowData}</Text>}
+
+        />
       </View>
+
+
     );
   }
 }
