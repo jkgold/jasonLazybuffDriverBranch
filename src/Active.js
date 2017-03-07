@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Text, View, AsyncStorage
+  Text, View, AsyncStorage, ListView
 } from 'react-native';
 import axios from 'axios';
 import { StackNavigator } from 'react-navigation';
@@ -17,8 +17,10 @@ class Active extends React.Component {
 
   constructor() {
     super();
+    const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !==r2});
     this.state = {
-      orders: [],
+      orders: [], dataSource: ds.cloneWithRows(["row 1", "row 2"])
+
     };
   }
 
@@ -40,11 +42,16 @@ class Active extends React.Component {
   render() {
     console.log(this.state.orders);
     return (
-      <View style={{flex: 1, padding: 20}}>
-        {this.state.orders.map((order) => {
-          return <View style={{flex: 1}}><Text>{order.orderId}</Text></View>
-        })}
-      </View>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={(orderId) => <Text>{orderId}</Text>}
+      />
+
+      // <View style={{flex: 1, padding: 20}}>
+      //   {this.state.orders.map((order) => {
+      //     return <View style={{flex: 1}}><Text>{order.orderId}</Text></View>
+      //   })}
+      // </View>
     );
   }
 }

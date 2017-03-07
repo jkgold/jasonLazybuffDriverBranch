@@ -56,7 +56,7 @@ class Login extends React.Component {
         .then((json) => {
           this.props.navigation.navigate('Active')
         })
-        .catch((err) => console.log('fail'))
+        .catch((err) => console.log('fail', err))
       this.setState({ loading: false });
     }
   })
