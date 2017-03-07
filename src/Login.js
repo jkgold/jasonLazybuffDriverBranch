@@ -1,46 +1,58 @@
 import React from 'react';
 import {
-   TextInput
+   TextInput, StyleSheet, View
 } from 'react-native';
 import axios from 'axios';
-import { StackNavigator } from 'react-navigation';
 import { API_URL } from '../actions';
 
 
 class Login extends React.Component {
+  static navigationOptions ={
+    title: ({ state }) => "Login",
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      text: 'enter email/username here'};
-    }
+      username: '',
+      password: '',
+    };
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+
+
+  }
+
+  handleUsernameChange(username) {
+    console.log(username)
+    this.setState({username})
+  }
+
+  handlePasswordChange(password) {
+    console.log(password)
+    this.setState({password})
+  }
+
 
   render() {
     return (
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#565A5C'}}>
+        <TextInput
+          placeholder='Username'
+          style={{flex: 1, color: 'white'}}
+          onChangeText={this.handleUsernameChange}
+          value={this.state.username}
+        />
 
-    <TextInput
-      style={{padding: 15, height: 60, borderColor: 'gray', borderWidth: 1}}
-      onChangeText={(text) => this.setState({text})}
-      value={this.state.text}
-    />
-
-
+        <TextInput
+          placeholder='Password'
+          style={{flex: 10, color: 'white'}}
+          onChangeText={this.handlePasswordChange}
+          value={this.state.password}
+        />
+      </View>
     );
   }
 }
-// const styles = StyleSheet.create({
-//   container: {
-//     flexDirection: 'column',
-//     justifyContent:'center',
-//     alignItems: 'center',
-//     flex: 1,
-//
-//   },
-//   username: {
-//
-//   },
-//   password: {
-//
-//   }
-// })
 
 export default Login;
