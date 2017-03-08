@@ -34,17 +34,18 @@ class ExpandedItem extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    backgroundColor: '#000000'
   },
   toolbar:{
     backgroundColor: '#CFB87C',
     paddingBottom: 5,
-
   },
   toolbarButton:{
     textAlign: 'center',
     backgroundColor:'#565A5C',
     color:'white',
+      borderRadius: 5
   },
   tallylist: {
     flexDirection: 'row',
