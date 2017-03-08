@@ -14,8 +14,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: 'ryan',
+      password: 'password',
       err: null,
       loading: false,
     };
@@ -68,41 +68,39 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1, alignItems: 'center', backgroundColor: '#000000'}}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', }}>
 
-        <TextInput
-          placeholder='username'
-          placeholderTextColor='white'
-          style={{flex: 1, color: 'white' }}
-          autoCapitalize='none'
-          autoCorrect= {false}
-          onChangeText={this.handleUsernameChange}
-          value={this.state.username}
-        />
+        <View>
+          <TextInput
+            placeholder='username'
+            style={{flex: 1, color: 'white' }}
+            autoCapitalize='none'
+            autoCorrect= {false}
+            onChangeText={this.handleUsernameChange}
+            value={this.state.username}
+          />
+          <TextInput
+            placeholder='password'
+            style={{flex: 1, color: 'white'}}
+            autoCapitalize='none'
+            autoCorrect={false}
+            onChangeText={this.handlePasswordChange}
+            value={this.state.password}
+          />
+          {this.state.err ? <Text style={{flex: 1, color: 'white'}}>{this.state.err}</Text> : null}
 
-        <TextInput
-          placeholder='password'
-          placeholderTextColor='white'
-          style={{flex: 1, color: 'white'}}
-          autoCapitalize='none'
-          autoCorrect={false}
-          onChangeText={this.handlePasswordChange}
-          value={this.state.password}
-        />
+          <Button
+            title='submit'
+            style={{backgroundColor: '#CFB87C', color: 'white'}}
+            onPress={this.submitLogin}
+          />
+        </View>
 
         <ActivityIndicator
           animating={this.state.loading}
           style={{flex: 1 }}
           size='large'
         />
-
-          {this.state.err ? <Text style={{flex: 1, color: 'white'}}>{this.state.err}</Text> : null}
-
-          <Button
-            style={{backgroundColor: '#CFB87C', color: 'white'}}
-            title="Submit"
-            onPress={this.submitLogin}
-          />
       </View>
     );
   }

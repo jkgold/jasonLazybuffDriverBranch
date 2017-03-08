@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, Button, AsyncStorage, Modal, TextInput } from 'react-native';
 import axios from 'axios';
 import { API_URL } from '../actions';
 
@@ -10,7 +10,6 @@ class ExpandedItem extends React.Component {
     this.state = {
       orderConfirmationActive: false,
       orderConfirmed: false,
-      orderTip:'',
     };
     this.handleNextAction = this.handleNextAction.bind(this);
   }
@@ -39,14 +38,6 @@ class ExpandedItem extends React.Component {
     .catch(err => console.log(err));
   }
 
-  showDeliveryConfirmation(orderId, auth) {
-    axios.post(`${API_URL}/driver/order/complete`, { orderId, auth })
-    .then(({ data }) => {
-      this.props.refreshOrders();
-    })
-    .catch(err => console.log(err));
-  }
-
   handleNextAction(status) {
     if (status === 'assigned') {
       return this.confirmOrder(this.props.order.orderId, this.props.auth);
@@ -58,9 +49,11 @@ class ExpandedItem extends React.Component {
       return this.pickUpOrder(this.props.order.orderId, this.props.auth);
     }
     else if (status === 'pickedUp') {
-      // return this.showDeliveryConfirmation(this.props.order.orderId, this.props.auth);
+      return this.props.showDeliveryConfirmation(this.props.order, this.props.auth);
     }
   }
+
+
 
   render() {
     let title = null;

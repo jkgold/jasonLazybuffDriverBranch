@@ -28,7 +28,13 @@ class ActiveListItem extends React.Component{
           <Text>{this.props.order.orderStatus}</Text>
           <Text>{this.props.order.orderCreatedAt}</Text>
         </View>
-        {this.state.itemExpanded ? <ExpandedItem order={this.props.order} auth={this.props.auth} refreshOrders={this.props.refreshOrders}/> : null}
+        {this.state.itemExpanded
+          ? <ExpandedItem
+              order={this.props.order}
+              auth={this.props.auth}     refreshOrders={this.props.refreshOrders}
+              showDeliveryConfirmation={this.props.showDeliveryConfirmation}
+            />
+          : null}
       </View>
 
     )
