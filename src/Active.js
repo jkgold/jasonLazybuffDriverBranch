@@ -5,7 +5,7 @@ import {
 import axios from 'axios';
 import { StackNavigator } from 'react-navigation';
 import { API_URL } from '../actions';
-
+import ActiveListItem from './ActiveListItem';
 
 
 
@@ -15,12 +15,12 @@ class Active extends React.Component {
     title: ({state}) => "Active",
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !==r2});
     this.state = {
-      orders: [], dataSource: ds.cloneWithRows(["row 1", "row 2"])
-
+      orders: [],
+      dataSource: ds.cloneWithRows(["row 1", "row 2"])
     };
   }
 
@@ -40,26 +40,12 @@ class Active extends React.Component {
     }
 
   render() {
-    console.log(this.state.orders);
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={(orderId) => <Text>{orderId}</Text>}
-      />
-
-      // <View style={{flex: 1, padding: 20}}>
-      //   {this.state.orders.map((order) => {
-      //     return <View style={{flex: 1}}><Text>{order.orderId}</Text></View>
-      //   })}
-      // </View>
+      <View style={{flex: 1, padding: 20}}>
+        {this.state.orders.map((order, i) => <ActiveListItem order={order} key={i} />)}
+      </View>
     );
   }
 }
-
-
-
-
-
-
 
 export default Active;
