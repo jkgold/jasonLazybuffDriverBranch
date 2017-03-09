@@ -66,8 +66,22 @@ class Login extends React.Component {
   });
 }
 
+
   render() {
     return (
+
+      // <View>
+      //   <Image
+      //     style={styles.icon}
+      //     source={require('./myIcon.png')}
+      //       />
+      //   <Image
+      //     style={styles.logo}
+      //     source={{uri: 'http://images.fineartamerica.com/images-medium-large/lazy-buffalo-misty-green.jpg'}}
+      //     />
+      //   </View>
+      //   );
+      // }
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#A2A4A3'}}>
 
         <View style={styles.inputContainer}>
@@ -80,7 +94,7 @@ class Login extends React.Component {
           />
           <TextInput
             placeholder='password'
-            style={styles.textInput} 
+            style={styles.textInput}
             autoCapitalize='none'
             autoCorrect={false}
             onChangeText={this.handlePasswordChange}
@@ -90,7 +104,7 @@ class Login extends React.Component {
 
           <Button
             title='submit'
-            style={{backgroundColor: 'black', color: 'white', fontSize: 20,}}
+            style={{backgroundColor: '#000000', fontSize: 20,}}
             onPress={this.submitLogin}
           />
         </View>
@@ -107,11 +121,14 @@ class Login extends React.Component {
 
 const styles = StyleSheet.create({
   inputContainer: {
-      flex:1,
-      borderBottomWidth: 2,
-      borderTopWidth: 2,
+      flex: 1,
+      marginTop: 300,
+      paddingTop: 30,
+      borderBottomWidth: 5,
+      borderTopWidth: 5,
+      borderLeftWidth:5,
+      borderRightWidth:5,
       height: 20,
-      fontSize: 100,
     },
     textInput: {
       flex: 1,
