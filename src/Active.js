@@ -60,7 +60,10 @@ class Active extends React.Component {
     }
 
     handleTipConfirm(tipConfirmAmount) {
+      var regex = /(?=.)^\$?(([1-9][0-9]{0,2}(,[0-9]{3})*)|[0-9]+)?(\.[0-9]{1,2})?$/;
+      const validCurrency = regex.test(tipConfirmAmount);
 
+      if (!validCurrency) return;
       this.setState({ tipConfirmAmount });
     }
 
