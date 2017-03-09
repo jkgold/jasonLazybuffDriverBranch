@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import ExpandedItem from './ExpandedItem';
+import Minutes from './Minutes';
 
 class ActiveListItem extends React.Component{
   constructor() {
@@ -24,9 +25,11 @@ class ActiveListItem extends React.Component{
             title='expand'
             onPress={this.expandItem}
           />
-          <Text>{this.props.order.orderId}</Text>
+          <Text>ID: {this.props.order.orderId}</Text>
           <Text>{this.props.order.orderStatus}</Text>
-          <Text>{this.props.order.orderCreatedAt}</Text>
+          <Minutes
+            createdAt={parseInt(this.props.order.orderCreatedAt)} readyIn={parseInt(this.props.order.orderReadyIn)}
+          />
         </View>
         {this.state.itemExpanded
           ? <ExpandedItem
@@ -45,9 +48,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   outsideContainer: {
+    flex: 1,
     justifyContent: 'flex-start',
+    width: '100%',
   },
 });
 

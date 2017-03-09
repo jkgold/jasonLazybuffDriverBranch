@@ -14,8 +14,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'ryan',
-      password: 'password',
+      username: '',
+      password: '',
       err: null,
       loading: false,
     };
@@ -68,20 +68,19 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', }}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#A2A4A3'}}>
 
-        <View>
+        <View style={styles.inputContainer}>
           <TextInput
             placeholder='username'
-            style={{flex: 1, color: 'white' }}
-            autoCapitalize='none'
+            style={styles.textInput}   autoCapitalize='none'
             autoCorrect= {false}
             onChangeText={this.handleUsernameChange}
             value={this.state.username}
           />
           <TextInput
             placeholder='password'
-            style={{flex: 1, color: 'white'}}
+            style={styles.textInput} 
             autoCapitalize='none'
             autoCorrect={false}
             onChangeText={this.handlePasswordChange}
@@ -91,7 +90,7 @@ class Login extends React.Component {
 
           <Button
             title='submit'
-            style={{backgroundColor: '#CFB87C', color: 'white'}}
+            style={{backgroundColor: 'black', color: 'white', fontSize: 20,}}
             onPress={this.submitLogin}
           />
         </View>
@@ -105,5 +104,26 @@ class Login extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  inputContainer: {
+      flex:1,
+      borderBottomWidth: 2,
+      borderTopWidth: 2,
+      height: 20,
+      fontSize: 100,
+    },
+    textInput: {
+      flex: 1,
+      color: 'black',
+      fontSize: 20, backgroundColor:'#CFB87C',
+      width: '100%',
+      borderBottomWidth: 10,
+      marginTop: 10,
+      borderWidth: 2,
+
+    }
+
+})
 
 export default Login;
