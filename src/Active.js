@@ -60,6 +60,7 @@ class Active extends React.Component {
     }
 
     handleTipConfirm(tipConfirmAmount) {
+
       this.setState({ tipConfirmAmount });
     }
 
@@ -78,7 +79,7 @@ class Active extends React.Component {
       });
     }
     else {
-      return <Text>You have no active orders</Text>
+      return <Text style={{color: 'white', fontSize: 30, marginTop: 20}}>No active orders</Text>
     }
   }
 
@@ -99,7 +100,7 @@ class Active extends React.Component {
         <View
           style={styles.modal}
         >
-          <View style={{flex: 1, justifyContent: 'center'}}>
+          <View style={{justifyContent: 'center', backgroundColor: '#A2A4A3', height: 200, width: 300 }}>
             <Text>Confirm Tip Amount</Text>
 
             <View style={styles.inputContainer}>
@@ -110,7 +111,7 @@ class Active extends React.Component {
               />
             </View>
             <Button
-              style={{backgroundColor: '#CFB87C', color: 'white'}}
+              style={{color: 'white'}}
               title="Confirm Tip"
               onPress={this.completeOrder}
             />
@@ -118,18 +119,19 @@ class Active extends React.Component {
         </View>
       );
     }
-
-    return (
-      <View style={{ flex: 1, padding: 20, alignItems: 'center' }}>
+    else {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', marginTop: 20, backgroundColor: '#A2A4A3' }}>
         {this.state.loading
-        ? <ActivityIndicator
+          ? <ActivityIndicator
             animating={this.state.loading}
-            style={{flex: 1 }}
+            style={{flex: 1, color: 'black' }}
             size='large'
           />
-        : this.mapOrders(this.state.orders)}
-      </View>
-    );
+          : this.mapOrders(this.state.orders)}
+        </View>
+      );
+    }
   }
 }
 
@@ -138,9 +140,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: '#A2A4A3',
     alignItems: 'center',
-    padding: 16,
+    justifyContent: 'center',
     position: 'absolute',
   },
   inputContainer: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Text, View
+  Text, View, StyleSheet
 } from 'react-native';
 import axios from 'axios';
 import { StackNavigator } from 'react-navigation';
@@ -13,11 +13,18 @@ class Completed extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>No Completed Orders</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#A2A4A3',
+    flex: 1,
+  },
+});
 
 export default Completed;

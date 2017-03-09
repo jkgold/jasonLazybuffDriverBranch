@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Button, AsyncStorage, Modal, TextInput } from '
 import axios from 'axios';
 import { API_URL } from '../actions';
 
+const stylePhone = (num) => `${num.slice(0,3)}-${num.slice(3,6)}-${num.slice(6,10)}`
+
 class ExpandedItem extends React.Component {
 //begining of fuctional code.
   constructor() {
@@ -56,6 +58,7 @@ class ExpandedItem extends React.Component {
 
 
   render() {
+    console.log(this.props.order);
     let title = null;
     switch (this.props.order.orderStatus) {
       case 'assigned':
@@ -83,29 +86,41 @@ class ExpandedItem extends React.Component {
           Confirm
         </Button>
 
+
+        <View style={styles.addressContainer}>
+          <Text>{this.props.order.customerName}</Text>
+          <Text>{stylePhone(this.props.order.customerPhone)}</Text>
+         <Text>
+           {this.props.order.customerAddress}
+           {this.props.order.customerUnt ? this.props.order.customerUnit : null}
+         </Text>
+          <Text>Boulder, CO {this.props.order.customerZip}</Text>
+        </View>
+
+
         <View style={styles.tallylist}>
           <Text>SubTotal:</Text>
-          <Text>{this.props.order.orderSubTotal}</Text>
+          <Text>${this.props.order.orderSubTotal}</Text>
         </View>
 
         <View style={styles.tallylist}>
           <Text>Tax:</Text>
-          <Text>{this.props.order.orderTax}</Text>
+          <Text>${this.props.order.orderTax}</Text>
         </View>
 
         <View style={styles.tallylist}>
           <Text>Tip:</Text>
-          <Text>{this.props.order.orderTip}</Text>
+          <Text>${this.props.order.orderTip}</Text>
         </View>
 
          <View style={styles.tallylist}>
            <Text>Fee:</Text>
-           <Text>{this.props.order.orderFee}</Text>
+           <Text>${this.props.order.orderFee}</Text>
         </View>
 
         <View style={styles.tallylist}>
           <Text>Total:</Text>
-          <Text>{this.props.order.orderTotal}</Text>
+          <Text>${this.props.order.orderTotal}</Text>
         </View>
       </View>
     );
@@ -118,8 +133,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#000000'
   },
+  addressContainer: {
+    padding: 10,
+  },
   toolbar:{
-    backgroundColor: '#CFB87C',
+    backgroundColor: 'white',
     paddingBottom: 5,
   },
   toolbarButton:{
@@ -130,9 +148,10 @@ const styles = StyleSheet.create({
   },
   tallylist: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
-
+    justifyContent: 'space-between',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
 });
 
 export default ExpandedItem;

@@ -49,6 +49,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: 'white',
+    width: '100%',
   },
   outsideContainer: {
     flex: 1,

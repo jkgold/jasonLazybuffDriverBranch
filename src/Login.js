@@ -82,7 +82,7 @@ class Login extends React.Component {
       //   </View>
       //   );
       // }
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#A2A4A3'}}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#A2A4A3', padding: 16}}>
 
         <View style={styles.inputContainer}>
           <TextInput
@@ -121,26 +121,22 @@ class Login extends React.Component {
 
 const styles = StyleSheet.create({
   inputContainer: {
+      borderRadius: 10,
+      backgroundColor: 'white',
       flex: 1,
       marginTop: 300,
-      paddingTop: 30,
-      borderBottomWidth: 5,
-      borderTopWidth: 5,
-      borderLeftWidth:5,
-      borderRightWidth:5,
+      padding: 20,
       height: 20,
     },
     textInput: {
       flex: 1,
       color: 'black',
-      fontSize: 20, backgroundColor:'#CFB87C',
+      fontSize: 20,
       width: '100%',
       borderBottomWidth: 10,
       marginTop: 10,
       borderWidth: 2,
-
     }
-
 })
 
 export default Login;
