@@ -117,7 +117,7 @@ class Active extends React.Component {
             </View>
             {this.state.validCurrency
             ? <Button
-                style={{ color: 'black', borderRadius: 10, marginTop: 10 }}
+                style={{ borderRadius: 10, marginTop: 10 }}
                 title="Submit"
                 onPress={this.completeOrder}
               />
@@ -132,14 +132,14 @@ class Active extends React.Component {
         <View style={{ flex: 1, alignItems: 'center', marginTop: 20, backgroundColor: '#CFB87C' }}>
           {!this.state.loading && this.state.orders.length === 0
           ? <Text
-              style={{color: 'black', fontSize: 40, fontWeight: 'bold', marginTop: 20}}>
+              style={{fontSize: 40, fontWeight: 'bold', marginTop: 20}}>
               No active orders
             </Text>
           : this.mapOrders(this.state.orders)}
           {this.state.loading
             ? <ActivityIndicator
             animating={this.state.loading}
-            style={{flex: 1, color: 'black' }}
+            style={{flex: 1 }}
             size='large'
             />
             : null}

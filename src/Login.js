@@ -98,7 +98,6 @@ class Login extends React.Component {
             />
             <ActivityIndicator
               animating={this.state.loading}
-              style={{color: 'black'}}
               size='large'
             />
 
