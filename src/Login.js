@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-   TextInput, StyleSheet, View, Button, Text, ActivityIndicator, TouchableHighlight, AsyncStorage
+   TextInput, StyleSheet, View, Button, Text, ActivityIndicator, TouchableHighlight, AsyncStorage, Image
 } from 'react-native';
 import axios from 'axios';
 import { API_URL } from '../actions';
@@ -69,73 +69,75 @@ class Login extends React.Component {
 
   render() {
     return (
-
-      // <View>
-      //   <Image
-      //     style={styles.icon}
-      //     source={require('./myIcon.png')}
-      //       />
-      //   <Image
-      //     style={styles.logo}
-      //     source={{uri: 'http://images.fineartamerica.com/images-medium-large/lazy-buffalo-misty-green.jpg'}}
-      //     />
-      //   </View>
-      //   );
-      // }
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#A2A4A3', padding: 16}}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#CFB87C', padding: 16}}>
 
         <View style={styles.inputContainer}>
-          <TextInput
-            placeholder='username'
-            style={styles.textInput}   autoCapitalize='none'
-            autoCorrect= {false}
-            onChangeText={this.handleUsernameChange}
-            value={this.state.username}
-          />
-          <TextInput
-            placeholder='password'
-            style={styles.textInput}
-            autoCapitalize='none'
-            autoCorrect={false}
-            onChangeText={this.handlePasswordChange}
-            value={this.state.password}
-          />
-          {this.state.err ? <Text style={{flex: 1, color: 'white'}}>{this.state.err}</Text> : null}
+          <View style={styles.inputCard}>
+            <TextInput
+              placeholder='username'
+              style={styles.textInput}
+              autoCapitalize='none'
+              autoCorrect= {false}
+              onChangeText={this.handleUsernameChange}
+              value={this.state.username}
+            />
+            <TextInput
+              placeholder='password'
+              style={styles.textInput}
+              autoCapitalize='none'
+              autoCorrect={false}
+              onChangeText={this.handlePasswordChange}
+              value={this.state.password}
+            />
+            {this.state.err ? <Text style={{ color: 'red', fontSize: 20}}>{this.state.err}</Text> : <View></View>}
 
-          <Button
-            title='submit'
-            style={{backgroundColor: '#000000', fontSize: 20,}}
-            onPress={this.submitLogin}
-          />
+            <Button
+              title='submit'
+              style={{backgroundColor: '#000000', fontSize: 20,}}
+              onPress={this.submitLogin}
+            />
+            <ActivityIndicator
+              animating={this.state.loading}
+              style={{color: 'black'}}
+              size='large'
+            />
+
+          </View>
         </View>
 
-        <ActivityIndicator
-          animating={this.state.loading}
-          style={{flex: 1 }}
-          size='large'
-        />
+
+        {/* <View style={{ width: 200, height: 200, position: 'absolute', bottom: 20 }}>
+          <Image
+            style={styles.image}
+            source={require('../images/buffalo-head.png')}
+          />
+        </View> */}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-      borderRadius: 10,
-      backgroundColor: 'white',
-      flex: 1,
-      marginTop: 300,
-      padding: 20,
-      height: 20,
+    inputCard: {
+      width: '100%',
+      height: 200,
+      margin: 20,
     },
     textInput: {
-      flex: 1,
+      height: 40,
       color: 'black',
       fontSize: 20,
       width: '100%',
       borderBottomWidth: 10,
+      borderBottomColor: '#A2A4A3',
       marginTop: 10,
       borderWidth: 2,
+      borderRadius: 5,
+      padding: 10,
+    },
+    image: {
+      height: '100%',
+      width: '100%',
     }
 })
 
